@@ -18,14 +18,25 @@ public class ParticleController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift)) 
+        {
+            dustFormationPeriod /= 2f;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift)) 
+        {
+            dustFormationPeriod *= 2f;
+        }
+        
         counter += Time.deltaTime;
 
         if (Mathf.Abs(playerRb.velocity.x) > occurAfterVelocity || Mathf.Abs(playerRb.velocity.y) > occurAfterVelocity)
         {
             if (counter > dustFormationPeriod)
             {
+                
                 movementParticle.Play();
-                counter = 0;
+                counter = 0;         
             }
         }
     }
